@@ -95,13 +95,27 @@ void Dialog::posicion()
 
     sol->setPos(sol->x() +( sol->getAx() /2)*t*t , sol->y() +( sol->getAy() /2)*t*t);
 
+    if(ui->checkBox->isChecked() and ui->comboBox->currentText() == "Planeta 1")
+        qDebug() <<"Ax ("<<planeta1->getVx()<<") Ay ("<<planeta1->getVy()<<")  ";
+    if(ui->checkBox->isChecked() and ui->comboBox->currentText() == "Planeta 2")
+        qDebug() <<"Ax ("<<planeta2->getVx()<<") Ay ("<<planeta2->getVy()<<")  ";
+    if(ui->checkBox->isChecked() and ui->comboBox->currentText() == "Sol")
+        qDebug() <<"Ax ("<<sol->getVx()<<") Ay ("<<sol->getVy()<<")  ";
 
-    qDebug() <<"x ("<<sol->x()<<" )  y ("<<sol->y()<<")";
-    //qDebug() << sol->getAngulo();
-    //qDebug() << planeta2->getDistancia();
-    //qDebug() << planeta1->getVx() *t +(( planeta1->getAx() /2)*t*t);
+    if(ui->checkBox_2->isChecked() and ui->comboBox->currentText() == "Planeta 1")
+        qDebug() <<"Vx ("<<planeta1->getVx()<<") Vy ("<<planeta1->getVy()<<")  ";
+    if(ui->checkBox_2->isChecked() and ui->comboBox->currentText() == "Planeta 2")
+        qDebug() <<"Vx ("<<planeta2->getVx()<<") Vy ("<<planeta2->getVy()<<")  ";
+    if(ui->checkBox_2->isChecked() and ui->comboBox->currentText() == "Sol")
+        qDebug() <<"Vx ("<<sol->getVx()<<") Vy ("<<sol->getVy()<<")  ";
 
-
+    if(ui->checkBox_3->isChecked() and ui->comboBox->currentText() == "Planeta 1")
+        qDebug() <<"x ("<<planeta1->x()<<" )  y ("<<planeta1->y()<<") ";
+    if(ui->checkBox_3->isChecked() and ui->comboBox->currentText() == "Planeta 2")
+        qDebug() << "x ("<<planeta2->x()<<" )  y ("<<planeta2->y()<<") ";
+    if(ui->checkBox_3->isChecked() and ui->comboBox->currentText() == "Sol")
+        qDebug() << "x ("<<sol->x()<<" )  y ("<<sol->y()<<") ";
 
 }
+
 
