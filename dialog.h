@@ -26,6 +26,7 @@ public:
 
 private:
     Ui::Dialog *ui;
+    Aviso *aviso;
     QGraphicsScene *scene;
     Planeta *sol;
     Planeta *planeta1;

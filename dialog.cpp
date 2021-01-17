@@ -13,15 +13,15 @@ Dialog::Dialog(QWidget *parent)
     setFixedSize(1000,1000);
     ui->Mapa->rotate(180);
 
-    sol = new Planeta(30);
+    sol = new Planeta(20);
     sol->setPos(0,0);
     sol->setBrush(Qt::yellow);
 
-    planeta1 = new Planeta(12);
-    planeta1->setPos(0,-7000);
+    planeta1 = new Planeta(7);
+    planeta1->setPos(0,-5000);
 
-    planeta2 = new Planeta(10);
-    planeta2->setPos(4000,5000);
+    planeta2 = new Planeta(7);
+    planeta2->setPos(0,5000);
 
     scene->addItem(sol);
     scene->addItem(planeta1);
@@ -86,27 +86,56 @@ void Dialog::posicion()
     if(planetas.length()>3){
         if(ui->checkBox->isChecked() and ui->comboBox->currentText() == "Planeta 3")
             qDebug() <<"Ax ("<<planetas.at(3)->getAx()<<") Ay ("<<planetas.at(3)->getAy()<<")  ";
-        if(ui->checkBox->isChecked() and ui->comboBox->currentText() == "Planeta 3")
+        if(ui->checkBox_2->isChecked() and ui->comboBox->currentText() == "Planeta 3")
             qDebug() <<"Vx ("<<planetas.at(3)->getVx()<<") Vy ("<<planetas.at(3)->getVy()<<")  ";
-        if(ui->checkBox->isChecked() and ui->comboBox->currentText() == "Planeta 3")
+        if(ui->checkBox_3->isChecked() and ui->comboBox->currentText() == "Planeta 3")
             qDebug() <<"X ("<<planetas.at(3)->x()<<") Y ("<<planetas.at(3)->y()<<")  ";
+        planetas.at(3)->setVx0(2);
+        planetas.at(3)->setVy0(0);
+
+        planetas.at(3)->setDistancia(sqrt(pow(sol->x()-planetas.at(3)->x(),2)+pow(sol->y()-planetas.at(3)->y(),2)));
+        planetas.at(3)->setAngulo((atan2(planetas.at(3)->y()-sol->y(),planetas.at(3)->x()-sol->x()))*57.2958);
+
+        if(sol->x()-planetas.at(3)->x()<0)
+            planetas.at(3)->setAngulo(planetas.at(3)->getAngulo()+180);
+
+        if(sol->x()-planetas.at(3)->x()>0 and sol->y()-planetas.at(3)->y()<0)
+            planetas.at(3)->setAngulo(planetas.at(3)->getAngulo()+360);
+
+        planetas.at(3)->setAx((g*70000/pow(planetas.at(3)->getDistancia(),2))*cos(planetas.at(3)->getAngulo()/57.2958));
+        planetas.at(3)->setAy((g*70000/pow(planetas.at(3)->getDistancia(),2))*sin(planetas.at(3)->getAngulo()/57.2958));
+        planetas.at(3)->setVx(planetas.at(3)->getVx0() + planetas.at(3)->getAx() *t);
+        planetas.at(3)->setVy(planetas.at(3)->getVy0() + planetas.at(3)->getAy() *t);
+
+        planetas.at(3)->setPos(planetas.at(3)->x() + planetas.at(3)->getVx() *t+( planetas.at(3)->getAx() /2)*t*t , planetas.at(3)->y() + planetas.at(3)->getVy() *t+( planetas.at(3)->getAy() /2)*t*t);
     }
     if(planetas.length()>4){
+
         if(ui->checkBox->isChecked() and ui->comboBox->currentText() == "Planeta 4")
             qDebug() <<"Ax ("<<planetas.at(4)->getAx()<<") Ay ("<<planetas.at(4)->getAy()<<")  ";
-        if(ui->checkBox->isChecked() and ui->comboBox->currentText() == "Planeta 4")
+        if(ui->checkBox_2->isChecked() and ui->comboBox->currentText() == "Planeta 4")
             qDebug() <<"Vx ("<<planetas.at(4)->getVx()<<") Vy ("<<planetas.at(4)->getVy()<<")  ";
-        if(ui->checkBox->isChecked() and ui->comboBox->currentText() == "Planeta 4")
+        if(ui->checkBox_3->isChecked() and ui->comboBox->currentText() == "Planeta 4")
             qDebug() <<"X ("<<planetas.at(4)->x()<<") Y ("<<planetas.at(4)->y()<<")  ";
-    }
 
-    if(planetas.length()>5){
-        if(ui->checkBox->isChecked() and ui->comboBox->currentText() == "Planeta 4")
-            qDebug() <<"Ax ("<<planetas.at(5)->getAx()<<") Ay ("<<planetas.at(5)->getAy()<<")  ";
-        if(ui->checkBox->isChecked() and ui->comboBox->currentText() == "Planeta 4")
-            qDebug() <<"Vx ("<<planetas.at(5)->getVx()<<") Vy ("<<planetas.at(5)->getVy()<<")  ";
-        if(ui->checkBox->isChecked() and ui->comboBox->currentText() == "Planeta 4")
-            qDebug() <<"X ("<<planetas.at(5)->x()<<") Y ("<<planetas.at(5)->y()<<")  ";
+        planetas.at(4)->setVx0(-2);
+        planetas.at(4)->setVy0(0);
+
+        planetas.at(4)->setDistancia(sqrt(pow(sol->x()-planetas.at(4)->x(),2)+pow(sol->y()-planetas.at(4)->y(),2)));
+        planetas.at(4)->setAngulo((atan2(planetas.at(4)->y()-sol->y(),planetas.at(4)->x()-sol->x()))*57.2958);
+
+        if(sol->x()-planetas.at(4)->x()<0)
+            planetas.at(4)->setAngulo(planetas.at(4)->getAngulo()+180);
+
+        if(sol->x()-planetas.at(4)->x()>0 and sol->y()-planetas.at(4)->y()<0)
+            planetas.at(4)->setAngulo(planetas.at(4)->getAngulo()+360);
+
+        planetas.at(4)->setAx((g*70000/pow(planetas.at(4)->getDistancia(),2))*cos(planetas.at(4)->getAngulo()/57.2958));
+        planetas.at(4)->setAy((g*70000/pow(planetas.at(4)->getDistancia(),2))*sin(planetas.at(4)->getAngulo()/57.2958));
+        planetas.at(4)->setVx(planetas.at(4)->getVx0() + planetas.at(3)->getAx() *t);
+        planetas.at(4)->setVy(planetas.at(4)->getVy0() + planetas.at(3)->getAy() *t);
+
+        planetas.at(4)->setPos(planetas.at(4)->x() + planetas.at(4)->getVx() *t+( planetas.at(4)->getAx() /2)*t*t , planetas.at(4)->y() + planetas.at(4)->getVy() *t+( planetas.at(4)->getAy() /2)*t*t);
     }
 
 
@@ -151,19 +180,19 @@ void Dialog::posicion()
 
 void Dialog::on_pushButton_clicked()
 {
-    if(planetas.length()<6){
+    if(planetas.length()<5){
         ui->comboBox->addItem(QString("Planeta ") + QString::number(planetas.length()));
-        planetas.push_back(new Planeta(5));
+        planetas.push_back(new Planeta(7));
         scene->addItem(planetas.back());
-        planetas.back()->setPos(100,500);
-
-
-
+        planetas.back()->setPos(5000,0);
+        if(planetas.length()==5)
+            planetas.back()->setPos(-5000,0);
     }
+
     else{
-        Aviso aviso;
-        aviso.setModal(true);
-        aviso.exec();
+        aviso =new Aviso;
+        aviso->setModal(true);
+        aviso->exec();
     }
 
 
