@@ -36,32 +36,17 @@
       <widget class="QComboBox" name="comboBox">
        <item>
         <property name="text">
+         <string>Sol</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
          <string>Planeta 1</string>
         </property>
        </item>
        <item>
         <property name="text">
          <string>Planeta 2</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Planeta 3</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Planeta 4</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Planeta 5</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Sol</string>
         </property>
        </item>
       </widget>
@@ -93,17 +78,19 @@
        </property>
       </widget>
      </item>
+     <item>
+      <widget class="QPushButton" name="pushButton">
+       <property name="text">
+        <string>Crear Planeta</string>
+       </property>
+      </widget>
+     </item>
     </layout>
    </item>
    <item row="1" column="0">
     <widget class="QGraphicsView" name="Mapa"/>
    </item>
   </layout>
-  <zorder>comboBox</zorder>
-  <zorder>Mapa</zorder>
-  <zorder>checkBox</zorder>
-  <zorder>checkBox_2</zorder>
-  <zorder>checkBox_3</zorder>
  </widget>
  <resources/>
  <connections/>

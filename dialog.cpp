@@ -27,6 +27,9 @@ Dialog::Dialog(QWidget *parent)
     scene->addItem(planeta1);
     scene->addItem(planeta2);
     actualizar = new QTimer();
+    planetas.push_back(planeta1);
+    planetas.push_back(planeta2);
+    planetas.push_back(sol);
 
     actualizar->start(200);
 
@@ -80,6 +83,32 @@ void Dialog::posicion()
 
     planeta2->setPos(planeta2->x() + planeta2->getVx() *t+( planeta2->getAx() /2)*t*t , planeta2->y() + planeta2->getVy() *t+( planeta2->getAy() /2)*t*t);
 
+    if(planetas.length()>3){
+        if(ui->checkBox->isChecked() and ui->comboBox->currentText() == "Planeta 3")
+            qDebug() <<"Ax ("<<planetas.at(3)->getAx()<<") Ay ("<<planetas.at(3)->getAy()<<")  ";
+        if(ui->checkBox->isChecked() and ui->comboBox->currentText() == "Planeta 3")
+            qDebug() <<"Vx ("<<planetas.at(3)->getVx()<<") Vy ("<<planetas.at(3)->getVy()<<")  ";
+        if(ui->checkBox->isChecked() and ui->comboBox->currentText() == "Planeta 3")
+            qDebug() <<"X ("<<planetas.at(3)->x()<<") Y ("<<planetas.at(3)->y()<<")  ";
+    }
+    if(planetas.length()>4){
+        if(ui->checkBox->isChecked() and ui->comboBox->currentText() == "Planeta 4")
+            qDebug() <<"Ax ("<<planetas.at(4)->getAx()<<") Ay ("<<planetas.at(4)->getAy()<<")  ";
+        if(ui->checkBox->isChecked() and ui->comboBox->currentText() == "Planeta 4")
+            qDebug() <<"Vx ("<<planetas.at(4)->getVx()<<") Vy ("<<planetas.at(4)->getVy()<<")  ";
+        if(ui->checkBox->isChecked() and ui->comboBox->currentText() == "Planeta 4")
+            qDebug() <<"X ("<<planetas.at(4)->x()<<") Y ("<<planetas.at(4)->y()<<")  ";
+    }
+
+    if(planetas.length()>5){
+        if(ui->checkBox->isChecked() and ui->comboBox->currentText() == "Planeta 4")
+            qDebug() <<"Ax ("<<planetas.at(5)->getAx()<<") Ay ("<<planetas.at(5)->getAy()<<")  ";
+        if(ui->checkBox->isChecked() and ui->comboBox->currentText() == "Planeta 4")
+            qDebug() <<"Vx ("<<planetas.at(5)->getVx()<<") Vy ("<<planetas.at(5)->getVy()<<")  ";
+        if(ui->checkBox->isChecked() and ui->comboBox->currentText() == "Planeta 4")
+            qDebug() <<"X ("<<planetas.at(5)->x()<<") Y ("<<planetas.at(5)->y()<<")  ";
+    }
+
 
     sol->setDistancia(sqrt(pow(planeta1->x()-planeta2->x(),2)+pow(planeta1->y()-planeta2->y(),2)));
     sol->setAngulo(atan((planeta1->y()-planeta2->y())/(planeta1->x()-planeta2->x()))*57.2958);
@@ -96,11 +125,11 @@ void Dialog::posicion()
     sol->setPos(sol->x() +( sol->getAx() /2)*t*t , sol->y() +( sol->getAy() /2)*t*t);
 
     if(ui->checkBox->isChecked() and ui->comboBox->currentText() == "Planeta 1")
-        qDebug() <<"Ax ("<<planeta1->getVx()<<") Ay ("<<planeta1->getVy()<<")  ";
+        qDebug() <<"Ax ("<<planeta1->getAx()<<") Ay ("<<planeta1->getAy()<<")  ";
     if(ui->checkBox->isChecked() and ui->comboBox->currentText() == "Planeta 2")
-        qDebug() <<"Ax ("<<planeta2->getVx()<<") Ay ("<<planeta2->getVy()<<")  ";
+        qDebug() <<"Ax ("<<planeta2->getAx()<<") Ay ("<<planeta2->getAy()<<")  ";
     if(ui->checkBox->isChecked() and ui->comboBox->currentText() == "Sol")
-        qDebug() <<"Ax ("<<sol->getVx()<<") Ay ("<<sol->getVy()<<")  ";
+        qDebug() <<"Ax ("<<sol->getAx()<<") Ay ("<<sol->getAy()<<")  ";
 
     if(ui->checkBox_2->isChecked() and ui->comboBox->currentText() == "Planeta 1")
         qDebug() <<"Vx ("<<planeta1->getVx()<<") Vy ("<<planeta1->getVy()<<")  ";
@@ -119,3 +148,23 @@ void Dialog::posicion()
 }
 
 
+
+void Dialog::on_pushButton_clicked()
+{
+    if(planetas.length()<6){
+        ui->comboBox->addItem(QString("Planeta ") + QString::number(planetas.length()));
+        planetas.push_back(new Planeta(5));
+        scene->addItem(planetas.back());
+        planetas.back()->setPos(100,500);
+
+
+
+    }
+    else{
+        Aviso aviso;
+        aviso.setModal(true);
+        aviso.exec();
+    }
+
+
+}

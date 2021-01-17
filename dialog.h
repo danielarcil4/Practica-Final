@@ -10,6 +10,7 @@
 #include <cmath>
 
 #include "planeta.h"
+#include "aviso.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Dialog; }
@@ -30,6 +31,7 @@ private:
     Planeta *planeta1;
     Planeta *planeta2;
     QTimer *actualizar;
+    QList <Planeta*> planetas;
 
 signals:
 public slots:
