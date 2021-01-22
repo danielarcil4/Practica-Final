@@ -92,6 +92,9 @@ QRectF Planeta::boundingRect() const
 
 void Planeta::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    painter->setBrush(Qt::black);
+    if(r==20)
+        painter->setBrush(Qt::yellow);
+    else
+        painter->setBrush(Qt::black);
     painter->drawEllipse(boundingRect());
 }
